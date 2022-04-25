@@ -49,6 +49,10 @@ public class Order {
         this.status = status;
     }
 
+    public ArrayList<OrderProduct> getOrderProductArrayList() {
+        return orderProductArrayList;
+    }
+
     /**
      * Calcule le prix total de cette commande.
      *

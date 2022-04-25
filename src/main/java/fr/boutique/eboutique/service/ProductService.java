@@ -16,4 +16,6 @@ public interface ProductService {
     public boolean isProductAvailable(Product product, int quantity);
 
     public void removeProduct(Product product, int quantity) throws StockException;
+
+
 }

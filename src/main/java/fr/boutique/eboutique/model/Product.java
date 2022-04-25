@@ -58,4 +58,8 @@ public class Product {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    public void setQuantity(int quantityProduct) {
+        this.quantity = quantityProduct;
+    }
 }

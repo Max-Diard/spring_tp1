@@ -50,7 +50,10 @@ public class ProductServiceImpl implements ProductService{
     public void removeProduct(Product product, int quantity) throws StockException {
         int quantityProduct = product.getQuantity() - quantity;
         if(quantityProduct < 0){
-            throw new StockException();
+            throw new StockException("MArche pas ailleurs");
+        }else {
+            product.setQuantity(quantityProduct);
         }
     }
+
 }
