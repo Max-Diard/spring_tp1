@@ -3,13 +3,17 @@ package com.boutique.eboutique.model;
 public class OrderProduct {
 
     private Integer quantity;
-    private Long idProduct;
-    private Long idOrder;
+    private Product product;
+    private Order order;
 
-    public OrderProduct(Integer quantity, Long idProduct, Long idOrder) {
+    public OrderProduct(Integer quantity, Product product, Order order) {
         this.quantity = quantity;
-        this.idProduct = idProduct;
-        this.idOrder = idOrder;
+        this.product = product;
+        this.order = order;
+    }
+
+    public OrderProduct(int quantity) {
+        this.quantity = quantity;
     }
 
     public Integer getQuantity(){
@@ -20,12 +24,30 @@ public class OrderProduct {
         this.quantity = quantity;
     }
 
-    public Long getIdProduct(){
-        return this.idProduct;
+    public Product getProduct(){
+        return this.product;
     }
 
-    public Long getIdOrder(){
-        return this.idOrder;
+    public Order getOrder(){
+        return this.order;
     }
 
+
+    /**
+     * Calcule le prix de cette ligne de commande.
+     *
+     * @return Le pirx total
+     */
+    public Double getTotalPrice(){
+        return ((double) this.quantity * this.product.getQuantity());
+    }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "quantity=" + quantity +
+                ", product=" + product +
+                ", order=" + order +
+                '}';
+    }
 }
