@@ -8,6 +8,10 @@ public class Client {
     private String username;
     private String password;
 
+    public Client(){
+        super();
+    }
+
     public Client(Long id, String username, String password) {
         this.id = id;
         this.username = username;
@@ -22,8 +26,8 @@ public class Client {
         return this.username;
     }
 
-    public void setUsername(String username){
-        this.username = username;
+    public String getPassword() {
+        return this.password;
     }
 
     @Override

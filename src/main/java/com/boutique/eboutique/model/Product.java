@@ -9,7 +9,12 @@ public class Product {
     private String picture;
     private Integer quantity;
 
+    public Product(){
+        super();
+    }
+
     public Product(Long id, String name, String description, Double price, String picture, Integer quantity) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;
@@ -26,40 +31,20 @@ public class Product {
         return this.name;
     }
 
-    public void setName(String name){
-        this.name = name;
-    }
-
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description){
-        this.description = description;
     }
 
     public Double getPrice(){
         return this.price;
     }
 
-    public void setPrice(Double price){
-        this.price = price;
-    }
-
     public String getPicture(){
         return this.picture;
     }
 
-    public void setPicture(String picture){
-        this.picture = picture;
-    }
-
     public Integer getQuantity(){
         return this.quantity;
-    }
-
-    public void setQuantity(Integer quantity){
-        this.quantity = quantity;
     }
 
     @Override

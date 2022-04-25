@@ -6,14 +6,15 @@ public class OrderProduct {
     private Product product;
     private Order order;
 
+    public OrderProduct(){
+        super();
+    }
+
     public OrderProduct(Integer quantity, Product product, Order order) {
+        super();
         this.quantity = quantity;
         this.product = product;
         this.order = order;
-    }
-
-    public OrderProduct(int quantity) {
-        this.quantity = quantity;
     }
 
     public Integer getQuantity(){
@@ -44,10 +45,6 @@ public class OrderProduct {
 
     @Override
     public String toString() {
-        return "OrderProduct{" +
-                "quantity=" + quantity +
-                ", product=" + product +
-                ", order=" + order +
-                '}';
+        return this.getQuantity() + " - " + this.getProduct().getName() + " . ";
     }
 }
