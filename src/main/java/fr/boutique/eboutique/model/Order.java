@@ -1,4 +1,4 @@
-package com.boutique.eboutique.model;
+package fr.boutique.eboutique.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

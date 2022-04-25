@@ -1,14 +1,10 @@
-package com.boutique.eboutique;
+package fr.boutique.eboutique;
 
-import com.boutique.eboutique.model.Client;
-import com.boutique.eboutique.model.Order;
-import com.boutique.eboutique.model.OrderProduct;
-import com.boutique.eboutique.model.Product;
-import org.springframework.boot.SpringApplication;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
+import fr.boutique.eboutique.model.Client;
+import fr.boutique.eboutique.model.Product;
+import fr.boutique.eboutique.service.ProductService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
 //
@@ -17,6 +13,8 @@ public class EBoutiqueApplication {
 
     public static void main(String[] args) {
 //        SpringApplication.run(EBoutiqueApplication.class, args);
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
 
         Client client1 = new Client(2134L, "maxime", "123456");
 
@@ -52,16 +50,14 @@ public class EBoutiqueApplication {
                 "beton.jpg",
                 100);
 
-//        OrderProduct orderProduct1 = new OrderProduct(5, product1);…
-//
-//        Order firstOrder = new Order(
-//                1L,
-//                LocalDate.now(),
-//                "En cours",
-//                client1,
-//                new ArrayList<OrderProduct>());
+        ProductService productService = context.getBean("products", ProductService.class);
 
-        System.out.println(client1);
+        productService.save(product1);
+        productService.save(product2);
+        productService.save(product3);
+        productService.save(product4);
+
+        productService.getAllProducts().forEach(System.out::println);
     }
 
 

@@ -1,4 +1,4 @@
-package com.boutique.eboutique;
+package fr.boutique.eboutique;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

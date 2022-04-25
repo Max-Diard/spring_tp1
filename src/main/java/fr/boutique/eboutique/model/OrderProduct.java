@@ -1,4 +1,4 @@
-package com.boutique.eboutique.model;
+package fr.boutique.eboutique.model;
 
 public class OrderProduct {
 
