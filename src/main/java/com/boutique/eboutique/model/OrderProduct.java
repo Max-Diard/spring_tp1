@@ -25,7 +25,7 @@ public class OrderProduct {
     }
 
     public Long getIdOrder(){
-        return this.idOrder
+        return this.idOrder;
     }
 
 }
