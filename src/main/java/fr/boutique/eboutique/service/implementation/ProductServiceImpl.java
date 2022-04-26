@@ -4,11 +4,13 @@ import fr.boutique.eboutique.exception.ResourceNotFoundException;
 import fr.boutique.eboutique.exception.StockException;
 import fr.boutique.eboutique.model.Product;
 import fr.boutique.eboutique.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Service("products")
 public class ProductServiceImpl implements ProductService {
 
     private final List<Product> allProducts = new ArrayList<>();

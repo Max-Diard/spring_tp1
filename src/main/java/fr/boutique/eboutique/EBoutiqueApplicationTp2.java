@@ -17,7 +17,7 @@ import java.util.ArrayList;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
 //
 //@SpringBootApplication
-public class EBoutiqueApplication {
+public class EBoutiqueApplicationTp2 {
 
     public static void main(String[] args) {
 //        SpringApplication.run(EBoutiqueApplication.class, args);

@@ -3,11 +3,13 @@ package fr.boutique.eboutique.service.implementation;
 import fr.boutique.eboutique.exception.ResourceNotFoundException;
 import fr.boutique.eboutique.model.Client;
 import fr.boutique.eboutique.service.ClientService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Service("clients")
 public class ClientServiceImpl implements ClientService {
     private final List<Client> allClient = new ArrayList<>();
 

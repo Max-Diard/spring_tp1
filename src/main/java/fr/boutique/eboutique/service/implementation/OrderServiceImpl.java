@@ -3,17 +3,22 @@ package fr.boutique.eboutique.service.implementation;
 import fr.boutique.eboutique.exception.StockException;
 import fr.boutique.eboutique.model.Order;
 import fr.boutique.eboutique.model.OrderProduct;
+import fr.boutique.eboutique.model.Product;
 import fr.boutique.eboutique.service.OrderService;
 import fr.boutique.eboutique.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Service("orders")
 public class OrderServiceImpl implements OrderService {
 
     private List<Order> allOrders = new ArrayList<Order>();
 
+    @Autowired
     private ProductService productService;
 
     @Override
@@ -33,7 +38,9 @@ public class OrderServiceImpl implements OrderService {
             ArrayList<OrderProduct> orderProducts = order.getOrderProductArrayList();
 
             for (OrderProduct orderProduct : orderProducts) {
-                int quantityProduct = orderProduct.getProduct().getQuantity();
+                Product product = productService.getProductById(orderProduct.getProduct().getId());
+
+                int quantityProduct = product.getQuantity();
                 int quantityOrder = orderProduct.getQuantity();
 
                 int newQuantity = quantityProduct - quantityOrder;
@@ -45,11 +52,15 @@ public class OrderServiceImpl implements OrderService {
 
             order.setStatus("Payée");
             for (OrderProduct orderProduct : orderProducts) {
-                int quantityProduct = orderProduct.getProduct().getQuantity();
+                Product product = productService.getProductById(orderProduct.getProduct().getId());
+
+                int quantityProduct = product.getQuantity();
                 int quantityOrder = orderProduct.getQuantity();
 
                 int newQuantity = quantityProduct - quantityOrder;
-                orderProduct.getProduct().setQuantity(newQuantity);
+                product.setQuantity(newQuantity);
+
+                productService.save(product);
             }
 
         }
