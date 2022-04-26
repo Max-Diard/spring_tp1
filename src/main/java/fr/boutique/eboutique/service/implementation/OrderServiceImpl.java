@@ -40,10 +40,16 @@ public class OrderServiceImpl implements OrderService {
 
                 if (newQuantity < 0) {
                     throw new StockException("Impossible de valider la commande !\nLe stock serait dans le négatif !");
-                } else {
-                    order.setStatus("Payée");
-                    orderProduct.getProduct().setQuantity(newQuantity);
                 }
+            }
+
+            order.setStatus("Payée");
+            for (OrderProduct orderProduct : orderProducts) {
+                int quantityProduct = orderProduct.getProduct().getQuantity();
+                int quantityOrder = orderProduct.getQuantity();
+
+                int newQuantity = quantityProduct - quantityOrder;
+                orderProduct.getProduct().setQuantity(newQuantity);
             }
 
         }

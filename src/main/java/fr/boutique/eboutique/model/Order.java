@@ -22,7 +22,6 @@ public class Order {
         this.status = status;
         this.client = client;
         this.orderProductArrayList = orderProduct;
-
     }
 
     public Client getClient(){
