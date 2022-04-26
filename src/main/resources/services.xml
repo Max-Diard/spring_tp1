@@ -2,11 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="products" class="fr.boutique.eboutique.service.ProductServiceImpl">
+    <bean id="products" class="fr.boutique.eboutique.service.implementation.ProductServiceImpl">
     </bean>
-    <bean id="clients" class="fr.boutique.eboutique.service.ClientServiceImpl">
+    <bean id="clients" class="fr.boutique.eboutique.service.implementation.ClientServiceImpl">
     </bean>
-    <bean id="orders" class="fr.boutique.eboutique.service.OrderServiceImpl">
+    <bean id="orders" class="fr.boutique.eboutique.service.implementation.OrderServiceImpl">
         <property name="productService" ref="products"></property>
     </bean>
 </beans>

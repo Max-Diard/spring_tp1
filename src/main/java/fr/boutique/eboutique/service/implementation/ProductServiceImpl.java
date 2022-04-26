@@ -1,14 +1,15 @@
-package fr.boutique.eboutique.service;
+package fr.boutique.eboutique.service.implementation;
 
 import fr.boutique.eboutique.exception.ResourceNotFoundException;
 import fr.boutique.eboutique.exception.StockException;
 import fr.boutique.eboutique.model.Product;
+import fr.boutique.eboutique.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     private final List<Product> allProducts = new ArrayList<>();
 

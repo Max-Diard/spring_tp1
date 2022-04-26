@@ -32,10 +32,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Le numéro du client: " +
+                this.id +
+                ", est lié à l'utilisateur: " +
+                this.username;
     }
 }

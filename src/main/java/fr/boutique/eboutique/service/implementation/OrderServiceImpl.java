@@ -1,9 +1,10 @@
-package fr.boutique.eboutique.service;
+package fr.boutique.eboutique.service.implementation;
 
 import fr.boutique.eboutique.exception.StockException;
 import fr.boutique.eboutique.model.Order;
 import fr.boutique.eboutique.model.OrderProduct;
-import fr.boutique.eboutique.model.Product;
+import fr.boutique.eboutique.service.OrderService;
+import fr.boutique.eboutique.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,15 +32,17 @@ public class OrderServiceImpl implements OrderService {
         if(!Objects.equals(order.getStatus(), "Payée")){
             ArrayList<OrderProduct> orderProducts = order.getOrderProductArrayList();
 
-            for(int i = 0; i < orderProducts.size(); i++){
-                int quantityProduct = orderProducts.get(i).getProduct().getQuantity();
-                int quantityOrder = orderProducts.get(i).getQuantity();
+            for (OrderProduct orderProduct : orderProducts) {
+                int quantityProduct = orderProduct.getProduct().getQuantity();
+                int quantityOrder = orderProduct.getQuantity();
 
-                if(quantityProduct - quantityOrder  < 0){
-                    throw new StockException("Marche pas");
+                int newQuantity = quantityProduct - quantityOrder;
+
+                if (newQuantity < 0) {
+                    throw new StockException("Impossible de valider la commande !\nLe stock serait dans le négatif !");
                 } else {
                     order.setStatus("Payée");
-                    orderProducts.get(i).getProduct().setQuantity(quantityProduct - quantityOrder);
+                    orderProduct.getProduct().setQuantity(newQuantity);
                 }
             }
 

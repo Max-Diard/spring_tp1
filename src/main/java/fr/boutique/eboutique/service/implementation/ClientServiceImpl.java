@@ -1,13 +1,14 @@
-package fr.boutique.eboutique.service;
+package fr.boutique.eboutique.service.implementation;
 
 import fr.boutique.eboutique.exception.ResourceNotFoundException;
 import fr.boutique.eboutique.model.Client;
+import fr.boutique.eboutique.service.ClientService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ClientServiceImpl implements ClientService{
+public class ClientServiceImpl implements ClientService {
     private final List<Client> allClient = new ArrayList<>();
 
     @Override

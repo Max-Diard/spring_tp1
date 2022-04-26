@@ -45,6 +45,6 @@ public class OrderProduct {
 
     @Override
     public String toString() {
-        return this.getQuantity() + " - " + this.getProduct().getName() + " . ";
+        return this.getQuantity() + " - " + this.getProduct().getName();
     }
 }

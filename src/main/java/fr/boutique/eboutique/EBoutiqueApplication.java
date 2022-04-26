@@ -6,7 +6,6 @@ import fr.boutique.eboutique.model.Order;
 import fr.boutique.eboutique.model.OrderProduct;
 import fr.boutique.eboutique.model.Product;
 import fr.boutique.eboutique.service.ClientService;
-import fr.boutique.eboutique.service.ClientServiceImpl;
 import fr.boutique.eboutique.service.OrderService;
 import fr.boutique.eboutique.service.ProductService;
 import org.springframework.context.ApplicationContext;
@@ -27,7 +26,7 @@ public class EBoutiqueApplication {
 
         System.out.println("-------");
 
-        Client client1 = new Client(2134L, "maxime", "123456");
+        Client client1 = new Client(2134L, "Maxime", "123456");
 
         ClientService clientService = context.getBean("clients", ClientService.class);
 
@@ -69,6 +68,8 @@ public class EBoutiqueApplication {
                 "beton.jpg",
                 100);
 
+        System.out.println("-------");
+
         ProductService productService = context.getBean("products", ProductService.class);
 
         productService.save(product1);
@@ -78,25 +79,53 @@ public class EBoutiqueApplication {
 
         productService.getAllProducts().forEach(System.out::println);
 
-        Order order = new Order(1l, LocalDate.now(), null, client1, new ArrayList<OrderProduct>());
+        Order order1 = new Order(1l, LocalDate.now(), null, client1, new ArrayList<OrderProduct>());
+        Order order2 = new Order(2l, LocalDate.now(), null, client1, new ArrayList<OrderProduct>());
 
-        order.addProduct(product1, 600);
-        order.addProduct(product3, 800);
 
-        System.out.println(order);
+        order1.addProduct(product1, 50);
+        order1.addProduct(product3, 30);
+        order1.addProduct(product1, 30);
+
+        System.out.println(order1);
         System.out.println("------");
 
         OrderService orderService = context.getBean("orders", OrderService.class);
-        orderService.create(order);
-        System.out.println(order);
+        orderService.create(order1);
+        System.out.println(order1);
 
         System.out.println("------");
         try {
-            orderService.update(order);
-        } catch (Exception e ){
-            System.out.println(e);;
+            orderService.update(order1);
+            System.out.println(order1);
+            System.out.println(product1);
+
+        } catch (StockException e){
+            System.out.println(e.getMessage());
         }
-        System.out.println(order);
+        System.out.println("------");
+
+        order2.addProduct(product1, 30);
+        System.out.println(order2);
+        System.out.println("------");
+
+        orderService.create(order2);
+        System.out.println(order2);
+
+        System.out.println("------");
+        try {
+            orderService.update(order2);
+            System.out.println(order2);
+            System.out.println(product1);
+
+        } catch (StockException e){
+            System.out.println(e.getMessage());
+        }
+
+
+
+
+
     }
 
 

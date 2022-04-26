@@ -124,13 +124,6 @@ public class Order {
                 " à commandé " +
                 this.getNumberOfProducts() +
                 " produits : " + this.orderProductArrayList.toString() +
-//                ;
-//
-//        for (OrderProduct orderProduct : orderProductArrayList) {
-//            string.append(orderProduct.toString());
-//        }
-//
-//        return string +
                 ". La commande est au statut: " +
                 this.getStatus() +
                 "." ;

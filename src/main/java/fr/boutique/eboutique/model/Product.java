@@ -49,14 +49,13 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", picture='" + picture + '\'' +
-                ", quantity=" + quantity +
-                '}';
+        return  "Le produit: " +
+                this.name +
+                ", à un stock de: " +
+                this.quantity +
+                ". Le prix à l'unité est de: " +
+                this.price +
+                ".";
     }
 
     public void setQuantity(int quantityProduct) {
