@@ -45,22 +45,16 @@ public class OrderServiceImpl implements OrderService {
 
                 int newQuantity = quantityProduct - quantityOrder;
 
-                if (newQuantity < 0) {
+//                productService.removeProduct();
+
+                if (!productService.isProductAvailable(orderProduct.getProduct(), orderProduct.getQuantity())) {
                     throw new StockException("Impossible de valider la commande !\nLe stock serait dans le négatif !");
                 }
             }
 
             order.setStatus("Payée");
             for (OrderProduct orderProduct : orderProducts) {
-                Product product = productService.getProductById(orderProduct.getProduct().getId());
-
-                int quantityProduct = product.getQuantity();
-                int quantityOrder = orderProduct.getQuantity();
-
-                int newQuantity = quantityProduct - quantityOrder;
-                product.setQuantity(newQuantity);
-
-                productService.save(product);
+                productService.removeProduct(orderProduct.getProduct(), orderProduct.getQuantity());
             }
 
         }

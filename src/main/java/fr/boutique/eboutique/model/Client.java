@@ -1,19 +1,28 @@
 package fr.boutique.eboutique.model;
 
+
+import javax.persistence.*;
 import java.util.Base64;
 
+@Entity
+@Table(name="clients")
 public class Client {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
     private String username;
+
+    @Column
     private String password;
 
     public Client(){
         super();
     }
 
-    public Client(Long id, String username, String password) {
-        this.id = id;
+    public Client( String username, String password) {
         this.username = username;
         this.password = Base64.getEncoder().encodeToString(password.getBytes());
     }
