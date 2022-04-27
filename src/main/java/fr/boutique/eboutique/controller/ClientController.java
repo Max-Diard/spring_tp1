@@ -32,4 +32,5 @@ public class ClientController {
                                @RequestParam("password") String password){
         return clientService.save(new Client(username, password));
     }
+
 }
