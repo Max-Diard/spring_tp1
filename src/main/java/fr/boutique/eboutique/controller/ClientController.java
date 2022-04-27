@@ -10,7 +10,6 @@ import java.util.List;
 @RequestMapping("/clients")
 public class ClientController {
 
-
     private ClientService clientService;
 
     public ClientController(ClientService clientService){
@@ -31,5 +30,10 @@ public class ClientController {
     public Client createClient(@RequestParam("username") String username,
                                @RequestParam("password") String password){
         return clientService.save(new Client(username, password));
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteClientById(@PathVariable("id") Long id){
+        return clientService.delete(id);
     }
 }

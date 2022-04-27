@@ -25,22 +25,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client getClientById(Long clientId) {
-        return clientRepository.findById(clientId).orElseThrow(ResourceNotFoundException::new);
-//
-//        Client client = null;
-//
-//        for(Client c : allClient){
-//            if(Objects.equals(c.getId(), clientId)){
-//                client = c;
-//                break;
-//            }
-//        }
-//
-//        if(client != null){
-//            return client;
-//        } else {
-//            throw new ResourceNotFoundException();
-//        }
+        return clientRepository.findById(clientId).orElseThrow(() -> new ResourceNotFoundException("Le client n'existe pas dans la base."));
     }
 
     @Override
@@ -48,5 +33,16 @@ public class ClientServiceImpl implements ClientService {
         allClient.add(client);
         clientRepository.save(client);
         return client;
+    }
+
+    @Override
+    public String delete(Long clientId) {
+        try{
+            Client client = this.getClientById(clientId);
+            clientRepository.delete(client);
+        } catch (ResourceNotFoundException e){
+            return e.getMessage();
+        }
+        return "Client Supprimé.";
     }
 }

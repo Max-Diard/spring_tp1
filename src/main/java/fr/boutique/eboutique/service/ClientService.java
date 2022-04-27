@@ -12,4 +12,6 @@ public interface ClientService {
     public Client getClientById(Long clientId);
 
     public Client save(Client client);
+
+    public String delete(Long clientId);
 }

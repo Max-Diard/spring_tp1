@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
         if(product != null){
             return product;
         } else {
-            throw new ResourceNotFoundException();
+            throw new ResourceNotFoundException("Le produit n'existe pas");
         }
     }
 
