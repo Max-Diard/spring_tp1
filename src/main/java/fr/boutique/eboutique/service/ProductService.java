@@ -17,5 +17,5 @@ public interface ProductService {
 
     public void removeProduct(Product product, int quantity) throws StockException;
 
-
+    public String delete(Long productId);
 }

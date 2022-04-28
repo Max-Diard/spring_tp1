@@ -1,7 +1,5 @@
-<jsp:include page="parts/head.jsp" />
-
-<jsp:include page="parts/header.jsp" />
+<%@include file="parts/head.jsp" %>
 
 <h1>Ca marche</h1>
 
-<jsp:include page="parts/footer.jsp" />
+<%@include file="parts/footer.jsp" %>

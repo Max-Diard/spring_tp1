@@ -1,21 +1,36 @@
 package fr.boutique.eboutique.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="products")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private Double price;
+
+    @Column
     private String picture;
+
+    @Column
     private Integer quantity;
 
     public Product(){
         super();
     }
 
-    public Product(Long id, String name, String description, Double price, String picture, Integer quantity) {
+    public Product(String name, String description, Double price, String picture, Integer quantity) {
         super();
-        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -47,18 +62,49 @@ public class Product {
         return this.quantity;
     }
 
+//    @Override
+//    public String toString() {
+//        return  "Le produit: " +
+//                this.name +
+//                ", à un stock de: " +
+//                this.quantity +
+//                ". Le prix à l'unité est de: " +
+//                this.price +
+//                ".";
+//    }
+
+
     @Override
     public String toString() {
-        return  "Le produit: " +
-                this.name +
-                ", à un stock de: " +
-                this.quantity +
-                ". Le prix à l'unité est de: " +
-                this.price +
-                ".";
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", picture='" + picture + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 
     public void setQuantity(int quantityProduct) {
         this.quantity = quantityProduct;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+
 }

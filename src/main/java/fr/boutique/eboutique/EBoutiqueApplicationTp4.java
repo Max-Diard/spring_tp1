@@ -13,13 +13,12 @@ public class EBoutiqueApplicationTp4 {
         SpringApplication.run(EBoutiqueApplicationTp4.class, args);
     }
 
-    @Bean
-    public CommandLineRunner runner(ProductService productService) {
-        return args -> {
-            Product product1 = new Product(1L, "Plaque de fer", "Ce fabrique à partir de minerai de fer", 12d, "https://static.wikia.nocookie.net/satisfactory_gamepedia_en/images/5/51/Iron_Plate.png",200);
-            Product product2 = new Product(2L, "Tige de fer", "Ce fabrique à partir d'une plaque de fer", 32d, "https://static.wikia.nocookie.net/satisfactory_gamepedia_en/images/5/5f/Iron_Rod.png",400);
-            productService.save(product1);
-            productService.save(product2);
-        };
-    }
+//    @Bean
+//    public CommandLineRunner runner(ProductService productService) {
+//        return args -> {
+//            Product product1 = new Product("Plaque de fer", "Ce fabrique à partir de minerai de fer", 12d, "https://static.wikia.nocookie.net/satisfactory_gamepedia_en/images/5/51/Iron_Plate.png",200);
+//            Product product2 = new Product("Tige de fer", "Ce fabrique à partir d'une plaque de fer", 32d, "https://static.wikia.nocookie.net/satisfactory_gamepedia_en/images/5/5f/Iron_Rod.png",400);
+//            productService.getAllProducts();
+//        };
+//    }
 }
