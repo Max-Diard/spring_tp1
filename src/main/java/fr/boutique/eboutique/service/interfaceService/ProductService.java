@@ -1,4 +1,4 @@
-package fr.boutique.eboutique.service;
+package fr.boutique.eboutique.service.interfaceService;
 
 import fr.boutique.eboutique.exception.StockException;
 import fr.boutique.eboutique.model.Product;

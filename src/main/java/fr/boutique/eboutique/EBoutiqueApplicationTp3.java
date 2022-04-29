@@ -5,8 +5,8 @@
 //import fr.boutique.eboutique.model.Order;
 //import fr.boutique.eboutique.model.OrderProduct;
 //import fr.boutique.eboutique.model.Product;
-//import fr.boutique.eboutique.service.OrderService;
-//import fr.boutique.eboutique.service.ProductService;
+//import fr.boutique.eboutique.service.dfghjkl.OrderService;
+//import fr.boutique.eboutique.service.dfghjkl.ProductService;
 //import org.springframework.context.ApplicationContext;
 //import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 //import org.springframework.context.annotation.ComponentScan;

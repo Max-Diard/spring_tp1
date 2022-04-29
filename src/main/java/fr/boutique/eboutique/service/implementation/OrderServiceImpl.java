@@ -4,8 +4,8 @@ import fr.boutique.eboutique.exception.StockException;
 import fr.boutique.eboutique.model.Order;
 import fr.boutique.eboutique.model.OrderProduct;
 import fr.boutique.eboutique.model.Product;
-import fr.boutique.eboutique.service.OrderService;
-import fr.boutique.eboutique.service.ProductService;
+import fr.boutique.eboutique.service.interfaceService.OrderService;
+import fr.boutique.eboutique.service.interfaceService.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

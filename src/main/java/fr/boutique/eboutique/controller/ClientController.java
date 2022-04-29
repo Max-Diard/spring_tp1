@@ -1,7 +1,7 @@
 package fr.boutique.eboutique.controller;
 
 import fr.boutique.eboutique.model.Client;
-import fr.boutique.eboutique.service.ClientService;
+import fr.boutique.eboutique.service.interfaceService.ClientService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,5 +35,10 @@ public class ClientController {
     @RequestMapping("/delete/{id}")
     public String deleteClientById(@PathVariable("id") Long id){
         return clientService.delete(id);
+    }
+
+    @GetMapping("")
+    public String getClienByUsername(@RequestParam("username") String username){
+        return username;
     }
 }

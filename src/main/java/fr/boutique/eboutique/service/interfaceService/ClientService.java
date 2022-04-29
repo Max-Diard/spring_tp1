@@ -1,7 +1,6 @@
-package fr.boutique.eboutique.service;
+package fr.boutique.eboutique.service.interfaceService;
 
 import fr.boutique.eboutique.model.Client;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

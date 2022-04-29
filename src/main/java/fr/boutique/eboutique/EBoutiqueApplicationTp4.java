@@ -1,11 +1,7 @@
 package fr.boutique.eboutique;
 
-import fr.boutique.eboutique.model.Product;
-import fr.boutique.eboutique.service.ProductService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class EBoutiqueApplicationTp4 {
