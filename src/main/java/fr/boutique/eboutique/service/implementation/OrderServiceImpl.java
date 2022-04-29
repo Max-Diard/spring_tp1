@@ -35,18 +35,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void update(Order order) throws StockException {
         if(!Objects.equals(order.getStatus(), "Payée")){
-            ArrayList<OrderProduct> orderProducts = order.getOrderProductArrayList();
+            List<OrderProduct> orderProducts = order.getOrderProductArrayList();
 
             for (OrderProduct orderProduct : orderProducts) {
-                Product product = productService.getProductById(orderProduct.getProduct().getId());
-
-                int quantityProduct = product.getQuantity();
-                int quantityOrder = orderProduct.getQuantity();
-
-                int newQuantity = quantityProduct - quantityOrder;
-
-//                productService.removeProduct();
-
                 if (!productService.isProductAvailable(orderProduct.getProduct(), orderProduct.getQuantity())) {
                     throw new StockException("Impossible de valider la commande !\nLe stock serait dans le négatif !");
                 }

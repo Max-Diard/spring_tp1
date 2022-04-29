@@ -1,20 +1,35 @@
 package fr.boutique.eboutique.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="table_order_product")
 public class OrderProduct {
 
-    private Integer quantity;
+    @EmbeddedId
+    private OrderProductId id;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private Order order;
+
+    private int quantity;
+
 
     public OrderProduct(){
         super();
     }
 
-    public OrderProduct(Integer quantity, Product product, Order order) {
+    public OrderProduct(OrderProductId id, Order order, Product product, int quantity) {
         super();
-        this.quantity = quantity;
+        this.id = id;
         this.product = product;
         this.order = order;
+        this.quantity = quantity;
     }
 
     public Integer getQuantity(){

@@ -1,27 +1,40 @@
 package fr.boutique.eboutique.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table(name="table_order")
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDate dateCreated;
+
     private String status;
+
+    @ManyToOne
     private Client client;
-    private ArrayList<OrderProduct> orderProductArrayList;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    private List<OrderProduct> orderProducts;
 
     public Order(){
         super();
     }
 
-    public Order(Long id, LocalDate dateCreated, String status, Client client, ArrayList<OrderProduct> orderProduct) {
+    public Order(Long id, LocalDate dateCreated, String status, Client client, List<OrderProduct> orderProduct) {
         super();
         this.id = id;
         this.dateCreated = dateCreated;
         this.status = status;
         this.client = client;
-        this.orderProductArrayList = orderProduct;
+        this.orderProducts = orderProduct;
     }
 
     public Client getClient(){
@@ -48,8 +61,8 @@ public class Order {
         this.status = status;
     }
 
-    public ArrayList<OrderProduct> getOrderProductArrayList() {
-        return orderProductArrayList;
+    public List<OrderProduct> getOrderProductArrayList() {
+        return orderProducts;
     }
 
     /**
@@ -60,7 +73,7 @@ public class Order {
     public Double getTotaOrderlPrice(){
         Double total = 0D;
 
-        for (OrderProduct orderProduct : orderProductArrayList) {
+        for (OrderProduct orderProduct : orderProducts) {
             total += orderProduct.getTotalPrice();
         }
 
@@ -73,7 +86,7 @@ public class Order {
      * @return int
      */
     public int getNumberOfProducts(){
-        return this.orderProductArrayList.size();
+        return this.orderProducts.size();
     }
 
     /**
@@ -84,7 +97,7 @@ public class Order {
     public int getTotalNumberOfProducts(){
         int total = 0;
 
-        for (OrderProduct orderProduct : orderProductArrayList) {
+        for (OrderProduct orderProduct : orderProducts) {
             total += orderProduct.getQuantity();
         }
 
@@ -100,7 +113,7 @@ public class Order {
         OrderProduct orderProduct = null;
 
         // On regarde si le produit est déjà dans la commande, dans ce cas on ajoute seulement la quantité
-        for (OrderProduct op: orderProductArrayList) {
+        for (OrderProduct op: orderProducts) {
             if (op.getProduct().equals(product)) {
                 orderProduct = op;
                 orderProduct.setQuantity(op.getQuantity() + quantity);
@@ -110,8 +123,10 @@ public class Order {
 
         // Sinon on ajoute une nouvelle ligne de commande
         if (orderProduct == null) {
-            orderProduct = new OrderProduct(quantity, product, this);
-            orderProductArrayList.add(orderProduct);
+            OrderProductId orderProductId = new OrderProductId(product.getId(), id);
+
+            orderProduct = new OrderProduct(orderProductId, this, product, quantity);
+            orderProducts.add(orderProduct);
         }
     }
 
@@ -122,7 +137,7 @@ public class Order {
                 this.client.getUsername() +
                 " à commandé " +
                 this.getNumberOfProducts() +
-                " produits : " + this.orderProductArrayList.toString() +
+                " produits : " + this.orderProducts.toString() +
                 ". La commande est au statut: " +
                 this.getStatus() +
                 "." ;

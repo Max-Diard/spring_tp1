@@ -47,6 +47,7 @@ public class ProductServiceImpl implements ProductService {
             throw new StockException("Marche pas ailleurs");
         }else {
             product.setQuantity(quantityProduct);
+            productRepository.save(product);
         }
     }
 
