@@ -35,10 +35,12 @@ public class ProductController {
         return "productFile/addProduct";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/createByForm",consumes = "application/x-www-form-urlencoded")
+    @RequestMapping(method = RequestMethod.POST,
+                    value="/createByForm",
+                    consumes = "application/x-www-form-urlencoded")
     public String submitForm(Product product,
-                           Model model,
-                           BindingResult result) {
+                             Model model,
+                             BindingResult result) {
         System.out.println(product);
 
         if(result.hasErrors()){

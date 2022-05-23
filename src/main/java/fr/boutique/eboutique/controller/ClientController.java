@@ -2,6 +2,9 @@ package fr.boutique.eboutique.controller;
 
 import fr.boutique.eboutique.model.Client;
 import fr.boutique.eboutique.service.interfaceService.ClientService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +40,4 @@ public class ClientController {
         return clientService.delete(id);
     }
 
-    @GetMapping("")
-    public String getClienByUsername(@RequestParam("username") String username){
-        return username;
-    }
 }

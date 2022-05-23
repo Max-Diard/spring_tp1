@@ -1,12 +1,16 @@
 package fr.boutique.eboutique.model;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.util.Base64;
+import java.util.Collection;
 
 @Entity
 @Table(name="clients")
-public class Client {
+public class Client implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +28,7 @@ public class Client {
 
     public Client( String username, String password) {
         this.username = username;
-        this.password = Base64.getEncoder().encodeToString(password.getBytes());
+        this.password = password;
     }
 
     public Long getId(){
@@ -45,5 +49,29 @@ public class Client {
                 this.id +
                 ", est lié à l'utilisateur: " +
                 this.username;
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 }
