@@ -3,7 +3,7 @@
 
 <h2 class="text-center">Créer un compte</h2>
 <div class="m-auto">
-    <form:form cssClass="d-flex flex-column align-items-center" action="create-by-form" method="post" modelAttribute="account">
+    <form:form cssClass="d-flex flex-column align-items-center" action="create-by-form" method="post" modelAttribute="client">
         <form:label path="username">Username: </form:label>
         <form:input type="text" path="username"/>
         <form:errors path="username" cssClass="error" />

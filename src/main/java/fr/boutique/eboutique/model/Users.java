@@ -5,12 +5,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Base64;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
-@Table(name="clients")
-public class Client implements UserDetails {
+@Table(name="users")
+public class Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,11 +22,19 @@ public class Client implements UserDetails {
     @Column
     private String password;
 
-    public Client(){
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
+    )
+    private Collection<Roles> roles;
+
+    public Users(){
         super();
     }
 
-    public Client( String username, String password) {
+    public Users(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -41,6 +49,14 @@ public class Client implements UserDetails {
 
     public String getPassword() {
         return this.password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

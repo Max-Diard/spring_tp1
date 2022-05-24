@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="products" class="fr.boutique.eboutique.service.implementation.ProductServiceImpl">
     </bean>
-    <bean id="clients" class="fr.boutique.eboutique.service.implementation.ClientServiceImpl">
+    <bean id="clients" class="fr.boutique.eboutique.service.implementation.UsersServiceImpl">
     </bean>
     <bean id="orders" class="fr.boutique.eboutique.service.implementation.OrderServiceImpl">
         <property name="productService" ref="products"></property>

@@ -2,7 +2,6 @@ package fr.boutique.eboutique.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +17,7 @@ public class Order {
     private String status;
 
     @ManyToOne
-    private Client client;
+    private Users client;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", insertable = false, updatable = false)
@@ -28,7 +27,7 @@ public class Order {
         super();
     }
 
-    public Order(Long id, LocalDate dateCreated, String status, Client client, List<OrderProduct> orderProduct) {
+    public Order(Long id, LocalDate dateCreated, String status, Users client, List<OrderProduct> orderProduct) {
         super();
         this.id = id;
         this.dateCreated = dateCreated;
@@ -37,11 +36,11 @@ public class Order {
         this.orderProducts = orderProduct;
     }
 
-    public Client getClient(){
+    public Users getClient(){
         return this.client;
     }
 
-    public void setClient(Client client){
+    public void setClient(Users client){
         this.client = client;
     }
 

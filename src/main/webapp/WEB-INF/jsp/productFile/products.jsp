@@ -1,6 +1,8 @@
 <%@include file="../parts/head.jsp" %>
 
-<a class="link-info" href="products/add">Ajouter un produit</a>
+<security:authorize access="isAuthenticated()">
+    <a class="link-info" href="products/add">Ajouter un produit</a>
+</security:authorize>
 
 <div class="all-product-content">
 <c:forEach items="${products}" var="p">
