@@ -18,11 +18,11 @@ public class Users {
     @Column
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id")
     )
     private Collection<Roles> roles;
 
@@ -55,11 +55,33 @@ public class Users {
         this.password = password;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Collection<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Roles> roles) {
+        this.roles = roles;
+    }
+
+    public String roleString(){
+        StringBuilder allRole = new StringBuilder();
+        for (Roles role :  getRoles()){
+            allRole.append(role.getName()).append(" ");
+        }
+        return allRole.toString();
+    }
+
     @Override
     public String toString() {
         return "Le numéro du client: " +
                 this.id +
                 ", est lié à l'utilisateur: " +
-                this.username;
+                this.username +
+                ", avec les roles: "+ this.roleString();
+
     }
 }

@@ -26,7 +26,7 @@
                 <a class="nav-link" style="color: indigo" href="logout">Logout</a>
             </security:authorize>
             <security:authorize access="!isAuthenticated()">
-                <a class="nav-link" style="color: indigo" href="/account/create">Créer un compte</a>
+                <a class="nav-link" style="color: indigo" href="/account/registration">Créer un compte</a>
                 <a class="nav-link" style="color: indigo" href="/login">Connexion</a>
             </security:authorize>
         </div>

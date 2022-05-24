@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(privateRoute).authenticated()
+                .antMatchers(privateRoute).hasRole("ADMIN")
                 .antMatchers(publicRoute).permitAll()
                 .antMatchers(HttpMethod.POST, "/account/createByForm").permitAll()
                 .and()

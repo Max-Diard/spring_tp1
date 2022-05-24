@@ -2,6 +2,8 @@ package fr.boutique.eboutique.service.implementation;
 
 import fr.boutique.eboutique.exception.ResourceNotFoundException;
 import fr.boutique.eboutique.model.Users;
+import fr.boutique.eboutique.modelDto.UsersDto;
+import fr.boutique.eboutique.repository.RolesRepository;
 import fr.boutique.eboutique.repository.UsersRepository;
 import fr.boutique.eboutique.security.MyClientPrincipal;
 import fr.boutique.eboutique.service.interfaceService.UsersService;
@@ -19,6 +21,9 @@ import java.util.Optional;
 @Service("Clients")
 public class UsersServiceImpl implements UsersService, UserDetailsService {
     private final List<Users> allClient = new ArrayList<>();
+
+    @Autowired
+    private RolesRepository rolesRepository;
 
     @Autowired
     private UsersRepository usersRepository;
@@ -39,6 +44,7 @@ public class UsersServiceImpl implements UsersService, UserDetailsService {
     @Override
     public Users save(Users client) {
         client.setPassword(passwordEncoder.encode(client.getPassword()));
+        client.setRoles(rolesRepository.findByName("ROLE_CLIENT"));
         usersRepository.save(client);
         return client;
     }
@@ -66,4 +72,13 @@ public class UsersServiceImpl implements UsersService, UserDetailsService {
             throw new UsernameNotFoundException("Ce username n'existe pas");
         }
     }
+
+    public void registerClient(UsersDto usersDto){
+        Users user = new Users();
+        user.setUsername(usersDto.getUsername());
+        user.setPassword(passwordEncoder.encode(usersDto.getPassword()));
+        user.setRoles(rolesRepository.findByName("ROLE_CLIENT"));
+        usersRepository.save(user);
+    }
+
 }

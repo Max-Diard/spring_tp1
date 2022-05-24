@@ -15,7 +15,9 @@
             </div>
             <div class="d-flex flex-column">
                 <a href="products/${p.id}" class="btn btn-primary align-self-center mb-2">Voir le produit</a>
-                <a href="products/delete/${p.id}" class="btn btn-danger align-self-center">Supprimer le produit</a>
+                <security:authorize access="hasRole('ADMIN')">
+                    <a href="products/delete/${p.id}" class="btn btn-danger align-self-center">Supprimer le produit</a>
+                </security:authorize>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
 <h2 class="text-center">Ajout d'un produit</h2>
 <div class="m-auto">
 
-<form:form cssClass="d-flex flex-column align-items-center" action="createByForm" method="post" modelAttribute="product">
+<form:form cssClass="d-flex flex-column align-items-center" action="create_by_form" method="post" modelAttribute="product">
     <form:label path="name">Nom: </form:label>
     <form:input type="text" path="name"/>
     <form:errors path="name" cssClass="error" />

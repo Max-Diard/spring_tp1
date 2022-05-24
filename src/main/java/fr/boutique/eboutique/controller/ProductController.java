@@ -3,10 +3,14 @@ package fr.boutique.eboutique.controller;
 import fr.boutique.eboutique.model.Product;
 import fr.boutique.eboutique.service.interfaceService.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/products")
@@ -29,14 +33,16 @@ public class ProductController {
         return "productFile/product";
     }
 
+    @Secured("ADMIN")
     @GetMapping("/add")
     public String addProductByForm(Model model){
+        System.out.println(" /add : Route pour créer un produit (Admin)");
         model.addAttribute("product", new Product());
         return "productFile/addProduct";
     }
 
     @RequestMapping(method = RequestMethod.POST,
-                    value="/createByForm",
+                    value="/create_by_form",
                     consumes = "application/x-www-form-urlencoded")
     public String submitForm(Product product,
                              Model model,
