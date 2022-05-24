@@ -3,6 +3,7 @@ package fr.boutique.eboutique.service.implementation;
 import fr.boutique.eboutique.exception.ResourceNotFoundException;
 import fr.boutique.eboutique.model.Users;
 import fr.boutique.eboutique.repository.UsersRepository;
+import fr.boutique.eboutique.security.MyClientPrincipal;
 import fr.boutique.eboutique.service.interfaceService.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -60,7 +61,7 @@ public class UsersServiceImpl implements UsersService, UserDetailsService {
 
         System.out.println(client);
         if (client.isPresent()) {
-            return client.get();
+            return new MyClientPrincipal(client.get());
         } else {
             throw new UsernameNotFoundException("Ce username n'existe pas");
         }
